@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f4f6f9;
+    background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #7c3aed 100%);
     color: #1a1a1a;
     min-height: 100vh;
     display: flex;
@@ -22,11 +22,12 @@ body {
 }
 
 .quiz-card {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 24px;
     padding: 32px 24px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.4);
     animation: fadeIn 0.4s ease-out;
+    backdrop-filter: blur(10px);
 }
 
 @keyframes fadeIn {
@@ -38,7 +39,7 @@ h1 {
     font-size: 26px;
     font-weight: 700;
     margin-bottom: 12px;
-    color: #111827;
+    color: #581c87;
     letter-spacing: -0.02em;
 }
 
@@ -46,7 +47,7 @@ h2 {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 24px;
-    color: #111827;
+    color: #581c87;
 }
 
 #app-subtitle {
@@ -77,10 +78,11 @@ h2 {
 }
 
 .answer-btn:hover {
-    background: #eff6ff;
-    border-color: #3b82f6;
-    color: #1d4ed8;
+    background: #f3e8ff;
+    border-color: #a855f7;
+    color: #581c87;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
 }
 
 .answer-btn:active {
@@ -109,24 +111,45 @@ h2 {
 }
 
 .btn-primary {
-    background: #2563eb;
+    background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
     color: #ffffff;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
 }
 
 .btn-primary:hover {
-    background: #1d4ed8;
+    background: linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6), 
+                0 0 20px rgba(168, 85, 247, 0.4);
 }
 
 .btn-secondary {
     background: #ffffff;
-    color: #2563eb;
-    border: 1.5px solid #2563eb;
+    color: #7c3aed;
+    border: 1.5px solid #7c3aed;
 }
 
 .btn-secondary:hover {
-    background: #eff6ff;
+    background: #f3e8ff;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
 }
 
 .btn-text {
@@ -138,7 +161,7 @@ h2 {
 }
 
 .btn-text:hover {
-    color: #111827;
+    color: #581c87;
 }
 
 .progress-bar {
@@ -151,13 +174,14 @@ h2 {
 
 #progress {
     height: 100%;
-    background: #2563eb;
+    background: linear-gradient(90deg, #a855f7 0%, #7c3aed 100%);
     width: 0%;
     transition: width 0.4s ease;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
 }
 
 #result-title {
-    color: #2563eb;
+    color: #7c3aed;
     margin-bottom: 16px;
 }
 
