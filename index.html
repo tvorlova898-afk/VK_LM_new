@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Что сейчас поможет вашему бизнесу?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="quiz-card">
+            <div id="start-screen">
+                <h1 id="app-title"></h1>
+                <p id="app-subtitle"></p>
+                <button class="btn btn-primary" onclick="startQuiz()">Начать</button>
+            </div>
+
+            <div id="question-container" style="display: none;">
+                <h2 id="question-text"></h2>
+                <div id="answers-container"></div>
+                <div class="progress-bar">
+                    <div id="progress"></div>
+                </div>
+            </div>
+
+            <div id="result-container" style="display: none;">
+                <h2 id="result-title"></h2>
+                <p id="result-text"></p>
+                <div class="buttons">
+                    <button class="btn btn-primary" id="btn-chat"></button>
+                    <button class="btn btn-secondary" id="btn-subscribe"></button>
+                    <button class="btn btn-text" onclick="restartQuiz()">Пройти заново</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
