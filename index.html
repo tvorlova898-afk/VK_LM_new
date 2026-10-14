@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Что сейчас поможет вашему бизнесу?</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
     <div class="container">
@@ -34,6 +34,28 @@
             </div>
         </div>
     </div>
-    <script src="script.js?v=2"></script>
+
+    <!-- Всплывающее окно с политикой -->
+    <div id="policy-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>Подписка на полезные материалы</h3>
+            <p class="modal-text">Чтобы получать рассылку, нам необходимо обработать ваши данные. Пожалуйста, подтвердите согласие.</p>
+            
+            <!-- Сюда потом вставишь ссылку на свой документ с политикой вместо решётки # -->
+            <a href="#" class="policy-link" target="_blank">Политика в отношении обработки персональных данных</a>
+            
+            <label class="checkbox-container">
+                <input type="checkbox" id="policy-checkbox">
+                <span class="checkbox-text">Я принимаю условия политики и даю согласие на обработку персональных данных</span>
+            </label>
+
+            <div class="modal-buttons">
+                <button class="btn btn-text" onclick="closeModal()">Отмена</button>
+                <button class="btn btn-primary" id="btn-confirm-subscribe" disabled>Перейти к боту</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=3"></script>
 </body>
 </html>
