@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #7c3aed 100%);
+    background: #f8fafc; /* Мягкий, чистый светло-серый фон */
     color: #1a1a1a;
     min-height: 100vh;
     display: flex;
@@ -22,13 +22,12 @@ body {
 }
 
 .quiz-card {
-    background: rgba(245, 235, 255, 0.9); /* Светло-лиловый фон карточки */
+    background: #ffffff; /* Белая карточка */
     border-radius: 24px;
     padding: 32px 24px;
-    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.4);
+    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.08); /* Очень мягкая фиолетовая тень */
     animation: fadeIn 0.4s ease-out;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid #f1f5f9;
 }
 
 @keyframes fadeIn {
@@ -53,7 +52,7 @@ h2 {
 
 #app-subtitle {
     font-size: 16px;
-    color: #6b21a8;
+    color: #64748b;
     margin-bottom: 32px;
 }
 
@@ -65,8 +64,8 @@ h2 {
 }
 
 .answer-btn {
-    background: #ede9fe; /* Нежно-фиолетовый фон кнопок ответов */
-    border: 1.5px solid #ddd6fe;
+    background: #f5f3ff; /* Нежно-лиловый фон блоков с вопросами */
+    border: 1.5px solid #ede9fe;
     border-radius: 16px;
     padding: 16px 20px;
     font-size: 16px;
@@ -79,11 +78,11 @@ h2 {
 }
 
 .answer-btn:hover {
-    background: #ddd6fe;
+    background: #ede9fe;
     border-color: #a855f7;
     color: #581c87;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.15);
 }
 
 .answer-btn:active {
@@ -114,12 +113,13 @@ h2 {
 .btn-primary {
     background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
     color: #ffffff;
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
 }
 
+/* Блик на кнопке */
 .btn-primary::before {
     content: '';
     position: absolute;
@@ -138,8 +138,7 @@ h2 {
 .btn-primary:hover {
     background: linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6), 
-                0 0 20px rgba(168, 85, 247, 0.4);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
 }
 
 .btn-secondary {
@@ -149,13 +148,13 @@ h2 {
 }
 
 .btn-secondary:hover {
-    background: #f3e8ff;
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+    background: #f5f3ff;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.15);
 }
 
 .btn-text {
     background: transparent;
-    color: #6b21a8;
+    color: #64748b;
     font-size: 14px;
     font-weight: 500;
     padding: 12px;
@@ -167,7 +166,7 @@ h2 {
 
 .progress-bar {
     height: 6px;
-    background: #e9d5ff;
+    background: #f1f5f9;
     border-radius: 3px;
     overflow: hidden;
     margin-top: 8px;
@@ -178,7 +177,7 @@ h2 {
     background: linear-gradient(90deg, #a855f7 0%, #7c3aed 100%);
     width: 0%;
     transition: width 0.4s ease;
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
 }
 
 #result-title {
@@ -188,7 +187,7 @@ h2 {
 
 #result-text {
     font-size: 16px;
-    color: #4b5563;
+    color: #475569;
     line-height: 1.6;
 }
 
