@@ -3,21 +3,9 @@ const CONFIG = {
     communityUrl: "https://vk.ru/pro_bot_auto",
     title: "Что сейчас поможет вашему бизнесу?",
     subtitle: "Ответьте на 3 вопроса — и получите практическую рекомендацию.",
-    products: [
-        { id: "services", title: "Услуги" },
-        { id: "products", title: "Товары" },
-        { id: "education", title: "Обучение" }
-    ],
-    goals: [
-        { id: "sales", title: "Быстрее получать продажи" },
-        { id: "warming", title: "Прогревать аудиторию" },
-        { id: "reactivation", title: "Вернуть тех, кто уже интересовался" }
-    ],
-    resources: [
-        { id: "minimum", title: "Минимум" },
-        { id: "medium", title: "Есть немного времени" },
-        { id: "maximum", title: "Могу вложиться" }
-    ],
+    products: [ { id: "services", title: "Услуги" }, { id: "products", title: "Товары" }, { id: "education", title: "Обучение" } ],
+    goals: [ { id: "sales", title: "Быстрее получать продажи" }, { id: "warming", title: "Прогревать аудиторию" }, { id: "reactivation", title: "Вернуть тех, кто уже интересовался" } ],
+    resources: [ { id: "minimum", title: "Минимум" }, { id: "medium", title: "Есть немного времени" }, { id: "maximum", title: "Могу вложиться" } ],
     results: {
         services_sales_minimum: { title: "Не усложняйте. Сначала — короткий путь к покупке.", text: "Если ресурсов немного, не стройте большую воронку. Выберите одну конкретную услугу и сделайте простой сценарий: проблема клиента → короткая польза → предложение услуги. Ваша задача сейчас — убрать лишние шаги между интересом и обращением." },
         services_sales_medium: { title: "Соберите мини-воронку под одну услугу.", text: "Вы уже можете автоматизировать первый этап продаж. Сделайте небольшой тест, опрос или подбор решения, который заканчивается персональной рекомендацией и предложением обратиться к вам. Это позволит не объяснять одно и то же каждому человеку вручную." },
@@ -63,7 +51,12 @@ function init() {
     document.getElementById('btn-chat').textContent = CONFIG.resultButtonText;
     document.getElementById('btn-chat').onclick = () => window.open(CONFIG.personalMessagesUrl, '_blank');
     document.getElementById('btn-subscribe').textContent = CONFIG.subscribeButtonText;
-    document.getElementById('btn-subscribe').onclick = () => window.open(CONFIG.communityUrl, '_blank');
+    document.getElementById('btn-subscribe').onclick = openModal;
+    
+    const checkbox = document.getElementById('policy-checkbox');
+    const confirmBtn = document.getElementById('btn-confirm-subscribe');
+    checkbox.addEventListener('change', function() { confirmBtn.disabled = !this.checked; });
+    confirmBtn.onclick = () => { closeModal(); window.open(CONFIG.communityUrl, '_blank'); };
 }
 
 function startQuiz() {
@@ -75,14 +68,10 @@ function startQuiz() {
 function showQuestion() {
     const stepKey = steps[currentStep];
     const options = CONFIG[stepKey];
-    
     document.getElementById('question-text').textContent = options[0].title.includes('Услуги') || options[0].title.includes('Товары') || options[0].title.includes('Обучение') 
-        ? (stepKey === 'products' ? '1. Что вы продаёте?' : stepKey === 'goals' ? '2. Что сейчас нужно?' : '3. Сколько ресурсов есть?') 
-        : 'Вопрос';
-
+        ? (stepKey === 'products' ? '1. Что вы продаёте?' : stepKey === 'goals' ? '2. Что сейчас нужно?' : '3. Сколько ресурсов есть?') : 'Вопрос';
     const container = document.getElementById('answers-container');
     container.innerHTML = '';
-
     options.forEach(option => {
         const btn = document.createElement('button');
         btn.className = 'answer-btn';
@@ -90,31 +79,22 @@ function showQuestion() {
         btn.onclick = () => selectAnswer(option.id);
         container.appendChild(btn);
     });
-
     updateProgress();
 }
 
 function selectAnswer(id) {
     userAnswers.push(id);
     currentStep++;
-
-    if (currentStep < steps.length) {
-        showQuestion();
-    } else {
-        showResult();
-    }
+    if (currentStep < steps.length) { showQuestion(); } else { showResult(); }
 }
 
 function showResult() {
     document.getElementById('question-container').style.display = 'none';
     document.getElementById('result-container').style.display = 'block';
-
     const resultKey = userAnswers.join('_');
     const result = CONFIG.results[resultKey] || CONFIG.results.default;
-
     document.getElementById('result-title').textContent = result.title;
     document.getElementById('result-text').textContent = result.text;
-    
     document.getElementById('progress').style.width = '100%';
 }
 
@@ -124,12 +104,18 @@ function updateProgress() {
 }
 
 function restartQuiz() {
-    currentStep = 0;
-    userAnswers = [];
+    currentStep = 0; userAnswers = [];
     document.getElementById('result-container').style.display = 'none';
     document.getElementById('start-screen').style.display = 'block';
     document.getElementById('progress').style.width = '0%';
 }
 
-// Запуск при загрузке
+function openModal() {
+    document.getElementById('policy-modal').style.display = 'flex';
+    document.getElementById('policy-checkbox').checked = false;
+    document.getElementById('btn-confirm-subscribe').disabled = true;
+}
+
+function closeModal() { document.getElementById('policy-modal').style.display = 'none'; }
+
 init();
